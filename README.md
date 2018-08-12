@@ -1,3 +1,3 @@
 # ZADV_Ruins
-Adaptation for [Z] Adventure mod.
+Adaptation  of "Ruins" mod by Bilka (TheRealGangsir) for [Z] Adventure mod.
 Updated, rebalanced, improved.

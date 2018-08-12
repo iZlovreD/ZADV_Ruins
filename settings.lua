@@ -3,7 +3,7 @@ data:extend({
 		type = "bool-setting",
 		name = "zadv_small_ruins",
         setting_type = "startup",
-		default_value = true
+		default_value = true,
 		orcder = "z-1-a-1",
 	},
 	{
@@ -19,7 +19,7 @@ data:extend({
 		type = "bool-setting",
 		name = "zadv_medium_ruins",
         setting_type = "startup",
-		default_value = true
+		default_value = true,
 		orcder = "z-1-b-1",
 	},
 	{
@@ -35,7 +35,7 @@ data:extend({
 		type = "bool-setting",
 		name = "zadv_large_ruins",
         setting_type = "startup",
-		default_value = true
+		default_value = true,
 		orcder = "z-1-c-1",
 	},
 	{
@@ -46,5 +46,5 @@ data:extend({
 		minimum_value = 50,
 		maximum_value = 250,
 		orcder = "z-1-c-2",
-	},
+	}
 })
