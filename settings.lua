@@ -1,59 +1,50 @@
 data:extend({
-	--[[--
-	{
-		type = "int-setting",
-		name = "ruins-min-distance-from-spawn",
-		setting_type = "runtime-global",
-		default_value = 200,
-		order = "a",
-	},
-	{
-		type = "double-setting",
-		name = "ruins-large-ruin-chance",
-		setting_type = "runtime-global",
-		default_value = 0.005,
-		minimum_value = 0.0,
-		maximum_value = 1.0,
-		order = "a",
-	},
-	{
-		type = "double-setting",
-		name = "ruins-medium-ruin-chance",
-		setting_type = "runtime-global",
-		default_value = 0.02,
-		minimum_value = 0.0,
-		maximum_value = 1.0,
-		order = "b",
-	},
-	{
-		type = "double-setting",
-		name = "ruins-small-ruin-chance",
-		setting_type = "runtime-global",
-		default_value = 0.05,
-		minimum_value = 0.0,
-		maximum_value = 1.0,
-		order = "c",
-	}
-	--]]--
 	{
 		type = "bool-setting",
 		name = "zadv_small_ruins",
         setting_type = "startup",
-		orcder = "z-1-a",
 		default_value = true
+		orcder = "z-1-a-1",
+	},
+	{
+		type = "int-setting",
+		name = "zadv_small_ruins_chance",
+		setting_type = "startup",
+		default_value = 150,
+		minimum_value = 50,
+		maximum_value = 500,
+		orcder = "z-1-a-1",
 	},
 	{
 		type = "bool-setting",
 		name = "zadv_medium_ruins",
         setting_type = "startup",
-		orcder = "z-1-b",
 		default_value = true
+		orcder = "z-1-b-1",
+	},
+	{
+		type = "int-setting",
+		name = "zadv_medium_ruins_chance",
+		setting_type = "startup",
+		default_value = 100,
+		minimum_value = 50,
+		maximum_value = 350,
+		orcder = "z-1-b-2",
 	},
 	{
 		type = "bool-setting",
 		name = "zadv_large_ruins",
         setting_type = "startup",
-		orcder = "z-1-c",
 		default_value = true
+		orcder = "z-1-c-1",
+	},
+	{
+		type = "int-setting",
+		name = "zadv_large_ruins_chance",
+		setting_type = "startup",
+		default_value = 50,
+		minimum_value = 50,
+		maximum_value = 250,
+		orcder = "z-1-c-2",
 	},
 })
