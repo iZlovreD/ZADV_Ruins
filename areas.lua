@@ -808,5 +808,157 @@ if settings.startup["zadv_medium_ruins"].value then
 
 end
 
+if settings.startup["zadv_large_ruins"].value then
+
+	ret.area['large destroyed enemy fort'] = {
+
+		bp = "0eNqdm+1u8kYQhW+l8m+ovN+73Er1qoLETS2BQca0jaLce81LgDSdHc7JLwKRHx/PzsfurPet2WxP3WHsh6lZvTX90344Nqvf3ppj/zKst+ffptdD16yafup2zaIZ1rvzt2lcD8fDfpyWm247Ne+Lph+eu3+alXlfPLx4fTx2u822H16Wu/XTn/3QLe0nhH3/sWi6YeqnvruI+fnl9ffhtNt043yPG+k47eeL/15vtzP9sD/Ol+yH831nzNLERfP68/P9LOoLxIKQoEEcCHEaxGOQojECKKTVIBGDZI2RMIY6NBljqEYtGMNrjLO1IKuqENBbrQrBvFUXgjmr6iEG81X9WTBfVb3MYK6qhozBXNXoRsV8VU8ABnNWPRVZzFmN6vGWTa1epFiSEkSK46wiS/EcRFZy99iX07CcTuPYTdLz2F+vnPkvkXT329Nc7MaXcT9/XmqowLu6np2L43M/dk+X/86Qa10dDqdz9f3/je7O/cf6OC374diN0/wf5S7uy10kbK7NAJRa80W9lbgF5xYc61oe6wCswbGZUGt5LKLW4dhEYD2OjYQRAo4NBDbyahEjJF4tgiXCzBFGIKLM42p9y6tFsESUWdwI3vJYRC0eZS1BxYPMEFQ8xhgL4CHGeAEeYURO9HiAEXXBF2ieYMyjaUJo0eptWrx4B8PNhawozXIQJ0IcOUFsRYonKUakEAXnNo2X9UR8zuVukv4zbF7CJr1xUp0cFFFkhkUW1WyFVeUVVRF2+FthElXFu4vvuuf+tFt229m2Y/+0POy3nRI/Mg6vFcbeXOPhiEYHh7dV5ZGLGxkSuCiSxy/yQZRFUOJBsqJMD10GRq7Q1PKYmlpqHEXDJS65izZL5LpdbgA6fgRlkGczzEfCEktqCiwtajQ81X8k4yRi8FV60jB4Tg8appDJ82oikZZb1uBOMXg2bIGQRfEJPT6O3+xoagKoXHaXO+lkchd7aDlyEHkAv5HYZTWZB8mK+FweHo9a4XK5qKyQXVhxol7IZC5O1Ms3krmsxvMgWVHgO5BAV6BEulOIUBPd0UOomW7oIdTC1iIn75m1bGmscAzdsQOe0rSW7thBWMeW4MpT+2/W4Aou0B0/6Gkj3fGDsIkt8pWnznSLD5LHFwz7uGAY09JYh2C5BYGV9665ItLKkG8UESOTqClRRU3gFs0yhJsSVYybKEhFCT8dqqgpNEhWZGl/RqLEGpZqECrn33K6sbx/V0B3996uN7VmvJevDax9PGKfyFKR1GQTE4KV5+X9Psigghg9yW/UtPq1QbuWdmhg9WEc1Z6XLeK47nyWIVxzvmIjvjdfUcP3JyuKEjtqGRk1ulmZEGqhhqDIL3y1fFmQCy+zn/tBqkgipvDXWtA+3h4znm7jIM1+46lJS+WR0TeQrluLtZ1F44lNqo+HRArpp21aaOuzri+TeyPyrobx1Dt18l6nCVQzp6IkcN0c+T02E7iZirzvaoJjGxLIxrIJnu1IYNjAtgAwbGRbABg2sWttDEu/C4RhC7tGhrCRKRcE1pBv12BUvJAQfhDxGCPcIOIhRoRCxCOMiFtiN5hIMsTWcCGomXzVBnkRyESu+sgpP7VcypcLajLUQZcaBS0/XqVw52VqFHRpYVQKd2SmRonM4Z0aBGwEJRUCnprRh7kwx3cqkNwyZ29qEMOcvalBLHP2pgbBnFZ1WXAvVx0bcC9XHxrMXVVHy4k4e1NjgMdm1NjLhTnAU4EU6thMDUL12s+QH4vLmcjVp/OXi3MTqdvOv/0y//1XNx4vZSsna/MsNM2LlH8BgsTaYQ=="
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+		,dangerous = true
+		
+		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+			
+			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
+				if game.item_prototypes['firearm-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert{name = "firearm-magazine", count = 5} end
+				entity.force = game.forces.enemy
+				
+			end
+			
+		end
+		
+	}
+
+	ret.area['large destroyed fort'] = {
+
+		bp = "0eNq1l9tq4zAQhl9l0bVdrJNPr1LK4iSiCGw5yHK7IeTdV0kumi2T8Qx0r2wnzOeZ8a/Rr7PYjas7Rh+S6M/C7+ewiP71LBb/Hobx+ls6HZ3ohU9uEoUIw3R9isNhiOJSCB8O7o/o5aXYjFnSHFz5OYzjQ6C6vBXCheSTd/c33x5Ov8M67VzMZCi+EMd5ySFzuL4tY8quEKd8MZdrIt8QioWwEELTEA2CMDREiyAsDWERRE1D1AiioSE0gmhpCIkgOhpCIQhZkRhYFpImT6wXkiZPtBCaPDFdSJo8MV1ImjyxNSJp8sQWu6TJE1tmsmUNDAUyOhZDg3Or+jZvn64QCYbLrXCFRautaItFa86HBDuoDKeDFYj4UuTkDn6dSje6fYp+Xx7n0T0f4HBN9Y/SGkaH4OpaTo/hJFgqBT+TrjgIMAv9JdT3NZRpjdElqJ0vd8mpF5sNxMHH3P3b3wqCqv8B1UwJKKRq84MsSyr2sVaIUrMp/3SshpgcmcO1saYxuCdolszBWWwqjn0DszCSYyJhhOLYNxihOSYSRhiOA4QRlmPfYMSDWofknm6OZntZm2YDVZFJLcMPwmV1G7koai6WJlnzPBcrGb4SJiiGJ4QJmuHnYIJhjCCYYBmEPD7ykfZ29O0fTteFGIedy6dj8Svff7i43Gdm2yjVyq5q8u76FwLkFd0="
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+		,dangerous = true
+		
+		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+			
+			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
+				if game.item_prototypes['firearm-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert{name = "firearm-magazine", count = 5} end
+				entity.force = game.forces.enemy
+				
+			end
+			
+		end
+		
+	}
+
+	ret.area['large early game setups'] = {
+
+		bp = "0eNqdV9mOozAQ/JWVn2GFT45fGY1WTuJZWSIGGWc0UcS/rzNk5+xA9zwRgrtU1V1l8IXt+pMbow+JdRfm90OYWPdwYZP/G2x//S+dR8c65pM7soIFe7ze9XbH5oL5cHAvrOPzY8FcSD55t5S/3pz/hNNx52Je8KmwYOMw5bVDuOLn+rIu2DlfeDXPxbdi8Vb8ZKdU+jC5mPKD7zD6BsMztYOPbr88NACofAOdjrbvS9fn1dHvy3Ho3Qo0yFBtyJNrxXq9mK/VGmxrJL4zNa0zq9oa9OhuMtttfi1RMwKSVzTNNzM0kGTOsfzUGgra9GYNReJyZ8BiRc1d/bnTAgLVP8sdzNDgcgcXE33+36EwWIMKMVxLNTSizaL6UYhBfmJj816bkBBEbRqh7d3U0R4sgLW4Gn6XvJs6RRumcYip3Lk+3Q2HQDDSeFCNBjV4UAWBKgj0g+nTEFz5dIrB7kG7/16o5ivYSPTWXkHkoF1YoINwC7ZCvOYrahfldhclp4IqBKggj0bCo5ESTY+jJSsiJkaxplkIM25DtJBBYNbUaRuE9oY8bX1n2i1xMnqbnSKnpkaAklPTIEDpqanhPipqajCSqanBKCamptl2uKKmJn/sb4OSY/MVFVRPz017Z97U3LRf2eUz7+uhuPtwhi6u30gun5vZr/z72cVpaVBTC9HwtqrFPP8DZHgVsw=="
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 15
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+	}
+
+	ret.area['large main bus'] = {
+
+		bp = "0eNqdnN1OG0kQRl9lNdfOyt3Tv36VKIogsSJLxrbsYbUI+d0zDoiNglec4yvAwPFXNV09Xxc1PA/328f14bjZTcPqedh82+9Ow+rz83Da/NjdbS+vTU+H9bAaNtP6YVgMu7uHy1fT8W53OuyP06f79XYazoths/u+/ndYhfOXxbDeTZtps34h/fri6evu8eF+fZx/4P8Yi+GwP82/tt9d3nVGfQpxMTzNH/uM/745rr+9fDOeF++o0VPbx9RRUJdYaxLUgLVmTm1YatFQoLRyaMdKm4YCpf0NejpsN9M0v/YeV15xf+ePgZdVQmVWLDOImko4o+G/mnqca/v447ifP37A/VPt4m372B0eL/vE+7cRRZa5+EQu3SuvokuXCTEaoqiukS+Gqql/5DNdo/L64hth6GKFLW9dYFHU3Nt2e43Dq0zctyJYVUHsMJGXU8JrKvJb1shDzxZKlPKaKlwpLyl+F4y8oipX2jE0LLkN4hXEb9gjLyfhA8eoqSQBvKiEYxuTN60VYLN3rQVgi8cStdW7YYJtHkuS0LUhBmLTUlOB1hS0JSbUKDxxIXesNGpPTHKaNJVEn2/wxFVbllS0oSfivTMs14xQappDLli3DhOEnJfeYfrLlYN2mPVjy52j9ZskIaOFgkuXk/WcBJotlIRfrOckSqv1nEQpL7LMlXYLBUrL0rpjoLQE644JNFooCX/UlptITZpKtGZr5InUYqFEadU+nkht2scTrV1Tgda69KeDEWBv6L9HgI3+dECwo7fxJAk3tOCJWt+DJ9SifTyhCjNYeGKbphKtXXt5oLUtyUnm1VtEcpJpQbeyQfQtaiqJXlQW3wZa0kcDQs32aECgRZt2ktaqqURrs66dQMVtC8ffl9a1A6U9WNdOlJJGRhHV30drronKZKEkn9k6dqK0WChRWq1jJ0p1550o9Z33kfy9eKmxkWCD9exIrG++I+yosSgHSdt2pDZrLFJbtG9H2KqxgWCbPg4gbNe+nSQh6P47ERt0/x1pFf33gKYQgu6/I53JtrBRTm/ov0c/kmImMzIXX/lMSmSXTnfiAxj1CN1SyYIQYxh8Q/htJoP2929YDjFaUx/PVzmj5aAcJHk4QNCM51LYLiMGM/h2IAYzxEJtEoqUdvk3AqJUzGUUrFTMZWSuNMrDAYKOEorCT/JwgKBZQlH4xR4NkNQqTwYI2qyDR9RuqSStYhgj8E06+bY7OWwkP/eeCNYPviO1SWOR2qxPBUitHn5HYvX0O6I2fioY0f066Z47yWnW8+8k+qzn3xE1Whucrro+MXLxykGZTNJOo5CzNagjOE+IoQu+RYmhC76d5oZdL6siMXCRsMpie+wkn8X22JHSKA0qUmr77Eip7bMjpdb2IWiRUBS+dX0I2iQUha9NH5FatekjWm+YtagE600fem7Iz1ogbLI2CuVAj1ogrXrUAlG15UMZ0KMWSGu3VKK1aduHqIEPcLAH8vyoBclp0084ouiTHeBA1GzNKsqAftIRaa3SAiOofdARxd+tryZUMWvB7wJi1iLgpPYozSVSOkpziaBJQlH4WZpLpLRIKFJqn3RESpuEIqVd2mDySKaftkDUYKmVUKN01wiqRy1QApKlvtP6ZfHyD0hWv/2/ksWwvZsp82t/zZ//sz6efv1waTXGNu+ONZ7PPwENncsc"
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+	}
+
+	ret.area['large orchard'] = {
+
+		bp = "0eNqV2N1qgzAYxvFbGTm2YGK+9FZGGf0Im9DGUu22Urz3aXcy2JOQ56hVmp8lff9YfIj96RYu1z5OonuI/jDEUXSvDzH273F3Ws9N90sQneincBaViLvzevQ1DMcQN4ePME5irkQfj+FbdHLeViLEqZ/68Os8D+5v8Xbeh+vyASxU4jKMy6IhrldcoI1Ulbivr808V/8YVczUOaYpZXxO0aWKzSmmVNE5xZYq2e11hUp2c30hkv0mbSGS3ZR1CIqU7A8kS2c3OyyydHTzkytLRzffkdRsjx4yhu0RM5bsESuO7BErnuwRKy3ZI1RUzfWIEcn1iBHF9YiRhssRI5qrESOGjBErlmwRK45NEd8ZPZsiZloyRXx/rckUsSLJFLGiyBSx0nApYkRzKWLEcClixHIpYsRxKWLEkylipSVTxH/oajJFBRVJlogVxYWIkYbrECOayxAjhqsQI5aKEBuOahAbnkoQGy1VIDRMTQWIDcn1hxHF5YeRhqzPQUWT9WHFcPVhxHL1YcRx9WHEc/VhpKXqg4atqfqwIan6sKGo+rDRUPVhQ3P1YcRw9WHEkvVJGLF1ZH4JxnP9JZSWCxArruYKTCiSSzChKKrBBNJQESYQTVWYQAyVYQKxVIcJxHEhJhTPlbgq2+r3EWv354lsJU67fTgt516W95/hOj6XWu+U8rKt3bLuBzLcI0E="
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+			
+			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
+				surface.create_entity{name = "tree-0" .. tostring(math.random(1, 9)), position = entity.position, force = 'neutral'}
+				entity.destroy()
+				
+			end
+			
+		end
+		
+	}
+
+	ret.area['large walledGrotto'] = {
+
+		bp = "0eNqVmu9q20AQxF+l3GcZ7v+d/ColFCcRrcCRg600DcHvXjsmbaGzy86nxCb6ZfZuNDrd7bu7379Mz8d5Wd323c0Ph+Xktl/f3Wn+vuz21+/Wt+fJbd28Tk9ucMvu6frptB6WafO62+/deXDz8jj9cttwvhvctKzzOk83yseHt2/Ly9P9dLz8Abp+cM+H0+WSw3L9bxfMJpTBvV1/5vN5+A8SSUhBkGSEZA2SjZCgQYoREjVItUFGjdFsjK4xuo2hTs1oY1SNEbwNklSI0a7qzASbXVWLBJtbvcqwmVWvxeZVdXaDzarqfRdsVtUdYrOqescEm1XVOybanBpUp0abU/+kGc7VyEGwkkSmc4SUTFISpBSuICylklICpPx17Ovh8Dgtm4cf02lV4tVDTLdioooZjZiu1ZQ8N7xQSiKdi5WQS4IOIaRzRwjJxpENmpJihGRNSaUGFgtp3JBUCOmc2TBkpKqBjMz5tUEGuYKFQZtJu+K1Z7JGQdUof/06Hw8iI2mIwiDwgFQTImsIa8B+LsZxLZ2yCFYycrMLnzrFW2f3c2EAn4AlmAZ2kzUp0cZIGiPZGEFj2Kz6+eTDjEIx8JhWqhbMaCaG10rpJoQ6oiOjAhZSPaMCI2we1aa1RgaBVSQmxTCCylJciM2fRVNBZSlW0RgEVsEFKZbBPfOhjuapMIZL1MbuWkFINAd6VKQkJosxIjPxhRGFSkA8HpVJYiyjUWGOZVApihFUikJE9wQCjkUPRB2YQGUoLiMRCCyCilAsglmOYhFMgmICFaC4DPKtCUO4BIWMkUtQmORjYAIDy4gMAqtITF5gBLUGxYUU4k7FhEqkBSY0QgMeiE5owISRCIuA9/g9gYgYEYi0EFREAiGoSEReCIhMIIRCrNtOwWsUat9JKIbbd0oYwlhUQDAexYjgCXcICMajGSMi9TQRdCRui0WQkhl/CAxqY1+ohtvXrxjCGVU4ZezkXo+AsW7qb5pCidaNp1EZFu44ShDCbZI2DDFvkgaNYt3Uv0npGEJ5VmBQ2SoUw1l2xBCzZW8UfPYTIrU+FSDcMRSuJ3Gv+PikMJDHUPgsKyS7Z4PK4Y6iJEqhvC+NDGVcCdIoiFBP5+YIP4ASt8ePj6dD9lQTkqDFfCSVVEqk2pAkSmL6kCRIZhqRJEghE0qYoso0I0laGtMVJUGMxtW9MjIdTQKkeKIbSWIEohtJYtgsq9q+JKIbSWJkoitKYhSio0li2LzaVEajXhSEu6Z0oi9KUjIS/VkCoxqXBqpVq3ExG1SIsbdKNXxNTKuYBKHevyQItZi9uuRuuDUQb//pNx7cfnc/7S/ffbn8/nM6nj4urb3F2MPo22Ud8BsdK4KJ"
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+			
+			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
+				surface.create_entity{name = "tree-05", position = entity.position, force = 'neutral'}
+				entity.destroy()
+				
+			elseif entity and entity.valid and entity.prototype.name == 'iron-chest' then
+				areadata.w = areadata.w or {}
+				table.insert(areadata.w, {name = "water", position = entity.position})
+				
+			end
+			
+		end
+		
+		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata)
+			
+			if areadata.w then surface.set_tiles(areadata.w, true) end
+			
+		end
+		
+	}
+
+	ret.area['large walledOrchard'] = {
+
+		bp = "0eNqV2t1q20AQBeBXKXstg/Z/168SQnES0QpsOdhK0xD87rXjixZ6ZphzlR/qr5vV6OxIu5/uaf82vZ7mZXXbTzc/H5ez2z58uvP8Y9ntb79bP14nt3XzOh3c4Jbd4fbTeT0u0+Z9t9+7y+Dm5WX67bb+8ji4aVnndZ7uytcPH9+Xt8PTdLr+A/T5wb0ez9ePHJfb/3ZlNj4N7uPr6+Uy/IcEEskIiUYkakgyIl5DshEJGlJsSNeMahzIqCHNhkTtAnfOgOO4jdKCqEXirfWqIsZ6Va+vt9WrPhBbuaqX19uqVb80tmLV58NWrFk1bLWq3jPeVqt6AgRbreo3XrDVqh5owVarehYFY62qt15IZMoHqGRSiVApXJZgpHKphpHGTS2elE5OyggX0JFUPFT+Vu378fgyLZvnn9N51dY/PJpgdkbViVanqUyyMkVlspXRL1WxMvocVyOjz3AzKvpYulFRJyaNRkW9Sslaw2rJJGsF6wWcrAWs308pcUEDb+5Epm+DSOGQDpHKIQUijUMqRDr34AGRPHLPDBjx1CWGU5IDZeBxRG5a4SNDJtsF/CSW2cUIM4VdizBTyaUIK41cibDSyYUIP6SO5DqEFc8tQxgJ3CqEkcgtQhhJ3BqEkcwtQRgp5AqElUouQFjhGl2YCaVTBn4nQna5sOGu5Gsv2PpXLmrxQLiohZ1BZR/MIMImLR4KG7RYIXMWI2TMYoRMWYg0MmQxwmUsNriIxQaXsNjgAhYbXL5ig4xXjJDpihEqXDHBZSsMgT4yBgy0TvWweBTW7YT7u0T8wjpSBsz3Tj1x4WFkahiwo++FMuCi2SuZ7lhpZLpjpXPpLmwmjFy8C4rn8l1QAhfwghKphBeQREW8gGQq4wWkUCEvIJVKeQFpXMwLSudyXti+ohK2YIOK2IYNqnet2OB6V/xay3uue+0YYbtXaTBs/yo5ZAcrMWQPKzFkFyswgexjJYbrZCWF62UlhetmJYXrZyWF62glhexpJaZSbZyAUF0tvrPJrTG8v+bJrTH88txHakNXQrjDMvg8ho/caRlJ4bIX74D6yJ2XkcZSqKM7ksIdmZGUxhzekRBj5TYNScbCrSpifNtVVMRYt1lFIrNvLyGJ2beXkMycAZKQwpxGkpBKIfgeNO6EqVVv3AhT/xjjPpj6txi3wdQrY9wGU+vMuA2mFrxxF0y987KtVNUIyIU5FSVdmMqcRZKQRi2iAkK97Lohj8P9uOz2n9O1g9vvnqb99Xffrt//mk7nr4+WVkNovo/12kz8AaoyKRU="
+		
+		,probability = settings.startup["zadv_large_ruins_chance"].value
+		,remoteness_min = 35
+		,nearest_copy = 50
+		,random_direction = true
+		,rotatable = false
+		
+		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+			
+			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
+				surface.create_entity{name = "tree-05", position = entity.position, force = 'neutral'}
+				entity.destroy()
+				
+			end
+			
+		end
+		
+	}
+
+end
+
 return ret
 	
