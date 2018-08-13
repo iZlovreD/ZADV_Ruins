@@ -7,5 +7,5 @@
 	"author": "ZlovreD",
 	"contact": "Discussion page on mods.factorio.com",
 	"description": "Adaptation of \"Ruins\" mod by Bilka (TheRealGangsir). Updated, rebalanced, improved.",
-	"dependencies": [ "base >= 0.16.40" ,"ZAdventure >= 1.16.0" ]
+	"dependencies": [ "base >= 0.16.40" ,"ZAdventure >= 1.16.6" ]
 }
