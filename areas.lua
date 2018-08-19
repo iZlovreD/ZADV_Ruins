@@ -1,70 +1,6 @@
 
 local ret = { ModName = "Ruins", area={} }
 
-ret.area['template'] = {
-
-	bp = ""
-	
-	,probability = 100
-	,remoteness_min = 10
-	,remoteness_max = 0
-	,only_once = false
-	,max_copies = 0
-	,nearest_copy = 0
-	,progressive_remoteness = 0
-	,ignore_technologies = true
-	,force = "neutral"
-	,unique = false
-	,random_direction = true
-	,force_build = true
-	,finalize_build = true
-	,force_reveal = true
-	,only_freeplay = false
-	
-	
-	,dangerous = false
-	,active = true
-	,minable = true
-	,destructible = true
-	,remains = false
-	,health = -1
-	,operable = true
-	,order_deconstruction = false
-	,rotatable = true
-	
-	
-	,areadata = {}
-
-	
-	,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
-		
-		
-		
-	end
-	
-	
-	,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
-		
-		
-		
-	end
-	
-	
-	,Events = {
-		
-		
-		
-	}
-	
-	
-	,messages = {
-		{ msg = "", color = {r=0.30, g=0.70, b=1} }, -- { "Message", {Color RGB} }
-	}
-	
-	,update_for = { modname="", areaname="" }
-	
-}
-
 if settings.startup["zadv_small_ruins"].value then
 
 	ret.area['small cross of pipes'] = {
@@ -87,7 +23,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,nearest_copy = 30
 		,random_direction = true
 
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid then entity.health = entity.prototype.max_health * (math.random(0, 1000)/600) end
 			
@@ -131,7 +67,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid then entity.health = entity.prototype.max_health * (math.random(0, 1000)/900) end
 			
@@ -150,7 +86,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,rotatable = false
 		,force = "neutral"
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'land-mine' then entity.force = game.forces.enemy end
 			
@@ -167,7 +103,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,nearest_copy = 10
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'iron-chest' then
 				locstore.pos = locstore.pos or {}
@@ -177,12 +113,12 @@ if settings.startup["zadv_small_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'iron-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "electric-mining-drill", pos, force, 4)
+				ZADV_ForceCreateEntity(surface, "electric-mining-drill", pos, force, 4)
 			end
 			
 		end
@@ -223,7 +159,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				entity.get_inventory(defines.inventory.chest).insert{name = "science-pack-1", count=20}
@@ -243,7 +179,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				if game.item_prototypes['engine-unit'] then entity.get_inventory(defines.inventory.chest).insert({name = "engine-unit", count=8}) end
@@ -266,7 +202,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid then entity.health = entity.prototype.max_health * (math.random(0, 1000)/500) end
 			
@@ -308,7 +244,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -318,10 +254,10 @@ if settings.startup["zadv_small_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "rock-big", pos, force)
+				ZADV_ForceCreateEntity(surface, "rock-big", pos, force)
 			end
 			
 		end
@@ -338,7 +274,7 @@ if settings.startup["zadv_small_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				if game.item_prototypes['coal'] then entity.get_inventory(defines.inventory.chest).insert({name = "coal", count=5}) end
@@ -413,7 +349,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.posa = locstore.posa or {}
@@ -429,14 +365,14 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,pos in pairs(locstore.posa) do
-				ForceCreateEntity(surface, "rock-big", pos, force)
+				ZADV_ForceCreateEntity(surface, "rock-big", pos, force)
 			end
 			
 			for _,pos in pairs(locstore.posb) do
-				ForceCreateEntity(surface, "biter-spawner", pos, force)
+				ZADV_ForceCreateEntity(surface, "biter-spawner", pos, force)
 			end
 			
 		end
@@ -455,7 +391,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				if game.item_prototypes['raw-fish'] then entity.get_inventory(defines.inventory.chest).insert({name = "raw-fish", count=30}) end
@@ -493,7 +429,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'land-mine' then
 				entity.force = game.forces.enemy
@@ -514,7 +450,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -524,12 +460,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "rock-big", pos, force)
+				ZADV_ForceCreateEntity(surface, "rock-big", pos, force)
 			end
 			
 		end
@@ -548,7 +484,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				if game.item_prototypes['iron-plate'] then entity.get_inventory(defines.inventory.chest).insert({name = "iron-plate", count = math.random(100, 400)}) end
@@ -567,12 +503,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'iron-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 		end
@@ -615,7 +551,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.posa = locstore.posa or {}
@@ -636,18 +572,18 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest','iron-chest','steel-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.posa) do
-				ForceCreateEntity(surface, "rock-big", pos, force)
+				ZADV_ForceCreateEntity(surface, "rock-big", pos, force)
 			end
 			for _,pos in pairs(locstore.posb) do
-				ForceCreateEntity(surface, "medium-worm-turret", pos, force)
+				ZADV_ForceCreateEntity(surface, "medium-worm-turret", pos, force)
 			end
 			for _,pos in pairs(locstore.posc) do
-				ForceCreateEntity(surface, "spitter-spawner", pos, force)
+				ZADV_ForceCreateEntity(surface, "spitter-spawner", pos, force)
 			end
 			
 		end
@@ -666,7 +602,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
 				if game.item_prototypes['firearm-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert({name = "firearm-magazine", count = 5}) end
@@ -702,7 +638,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
 				if game.item_prototypes['piercing-rounds-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert({name = "piercing-rounds-magazine", count = 5}) end
@@ -720,12 +656,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 		end
@@ -742,7 +678,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -752,12 +688,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "rock-big", pos, force)
+				ZADV_ForceCreateEntity(surface, "rock-big", pos, force)
 			end
 			
 		end
@@ -774,7 +710,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'storage-tank' then
 				if game.fluid_prototypes['heavy-oil'] then entity.fluidbox[1] = { name = "heavy-oil", amount = math.random(500,5000) } end
@@ -808,7 +744,7 @@ if settings.startup["zadv_medium_ruins"].value then
 			{name = "gun-turret", count = math.random(10, 20)}
 		}
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			locstore.count = locstore.count or 0
 			
@@ -837,7 +773,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -851,12 +787,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 		end
@@ -871,7 +807,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		,remoteness_min = 15
 		,nearest_copy = 30
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -886,12 +822,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest','iron-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 			if locstore.w then surface.set_tiles(locstore.w, true) end
@@ -908,7 +844,7 @@ if settings.startup["zadv_medium_ruins"].value then
 		,remoteness_min = 15
 		,nearest_copy = 30
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -923,12 +859,12 @@ if settings.startup["zadv_medium_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest','iron-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 			if locstore.w then surface.set_tiles(locstore.w, true) end
@@ -953,7 +889,7 @@ if settings.startup["zadv_large_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
 				if game.item_prototypes['firearm-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert({name = "firearm-magazine", count = 5}) end
@@ -977,7 +913,7 @@ if settings.startup["zadv_large_ruins"].value then
 		
 		,dangerous = true
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'gun-turret' then
 				if game.item_prototypes['firearm-magazine'] then entity.get_inventory(defines.inventory.turret_ammo).insert({name = "firearm-magazine", count = 5}) end
@@ -1023,7 +959,7 @@ if settings.startup["zadv_large_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -1034,12 +970,12 @@ if settings.startup["zadv_large_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-0" .. tostring(math.random(1, 9)), pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-0" .. tostring(math.random(1, 9)), pos, force)
 			end
 			
 		end
@@ -1054,7 +990,7 @@ if settings.startup["zadv_large_ruins"].value then
 		,remoteness_min = 35
 		,nearest_copy = 50
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -1069,12 +1005,12 @@ if settings.startup["zadv_large_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest','iron-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			if locstore.w then surface.set_tiles(locstore.w, true) end
 			
@@ -1092,7 +1028,7 @@ if settings.startup["zadv_large_ruins"].value then
 		,random_direction = true
 		,rotatable = false
 		
-		,ScriptForEach = function(rndroll, game, surface, force, area, center, entity, namelist, locstore, areadata)
+		,ScriptForEach = function(game, surface, force, area, center, entity, namelist, locstore, areadata)
 			
 			if entity and entity.valid and entity.prototype.name == 'wooden-chest' then
 				locstore.pos = locstore.pos or {}
@@ -1103,12 +1039,12 @@ if settings.startup["zadv_large_ruins"].value then
 			
 		end
 		
-		,ScriptForAll = function(rndroll, game, surface, force, area, center, namelist, entitylist, areadata, locstore)
+		,ScriptForAll = function(game, surface, force, area, center, namelist, entitylist, areadata, locstore)
 			
 			for _,e in pairs(surface.find_entities_filtered{area=area, name={'wooden-chest'}}) do e.destroy() end
 			
 			for _,pos in pairs(locstore.pos) do
-				ForceCreateEntity(surface, "tree-05", pos, force)
+				ZADV_ForceCreateEntity(surface, "tree-05", pos, force)
 			end
 			
 		end

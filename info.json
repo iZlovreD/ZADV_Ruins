@@ -1,11 +1,11 @@
 {
 	"name": "ZAdv_ruins",
 	"order": "z-02",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"title": "[Z] Adventure Ruins",
 	"factorio_version": "0.16",
 	"author": "ZlovreD",
 	"contact": "Discussion page on mods.factorio.com",
 	"description": "Adaptation of \"Ruins\" mod by Bilka (TheRealGangsir). Updated, rebalanced, improved.",
-	"dependencies": [ "base >= 0.16.40" ,"ZAdventure >= 1.16.6" ]
+	"dependencies": [ "base >= 0.16.40" ,"ZAdventure >= 2.16.0" ]
 }
